@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://mk61jdnlqqck"]
+
+[ext_resource type="Texture2D" uid="uid://wi664a6xgtk2" path="res://assets/sprites/mob.png" id="1_kgc2d"]
+[ext_resource type="Script" uid="uid://c4duto1hl4kx3" path="res://enemy/mob.gd" id="1_rwdny"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ots1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kgc2d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kgc2d"]
+radius = 5.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgc2d"]
+radius = 13.0
+
+[node name="Mob" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_rwdny")
+metadata/_edit_horizontal_guides_ = [-22.0]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_ots1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+shape = SubResource("CircleShape2D_kgc2d")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_kgc2d")

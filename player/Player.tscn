@@ -17,11 +17,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["players"]]
+collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_3c3w1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 11)
+position = Vector2(-1, 7)
 shape = SubResource("CircleShape2D_wnvi2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

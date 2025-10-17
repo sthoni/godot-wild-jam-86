@@ -2,8 +2,10 @@ class_name Player extends CharacterBody2D
 
 @export var speed := 150.0
 @export var ground_friction_factor := 20.0
-@export var dash_cooldown := 2.0
-@export var dash_multiplier := 5.0
+@export var dash_cooldown := 1.0
+@export var dash_multiplier := 10.0
+
+# Zweiter Dash einbauen. Einfach Code kopieren und Dash für Dash abarbeiten.
 
 @onready var dash_cooldown_timer := Timer.new()
 
