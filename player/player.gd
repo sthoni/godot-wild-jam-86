@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@export var speed := 150.0
+@export var speed := 120.0
 @export var ground_friction_factor := 20.0
 @export var dash_cooldown := 1.0
 @export var dash_multiplier := 10.0
@@ -8,6 +8,9 @@ class_name Player extends CharacterBody2D
 # Zweiter Dash einbauen. Einfach Code kopieren und Dash für Dash abarbeiten.
 
 @onready var dash_cooldown_timer := Timer.new()
+@onready var weapon_aim_direction := Vector2.ZERO
+
+@onready var weapon : Node2D = $Weapon
 
 func _ready() -> void:
 	dash_cooldown_timer.one_shot = true
@@ -17,6 +20,7 @@ func _ready() -> void:
 	add_child(dash_cooldown_timer)
 
 func _physics_process(delta: float) -> void:
+	attack()
 	var move_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
 		dash_cooldown_timer.start()
@@ -29,3 +33,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_dash_cooldown_timeout() -> void:
 	print("Dash cooldown finished")
+
+func attack() -> void:
+	weapon_aim_direction = (get_global_mouse_position() - global_position).normalized()
+	weapon.rotation = lerp_angle(weapon.rotation, weapon_aim_direction.angle(), 0.2)
+	if Input.is_action_just_pressed("attack"):
+		weapon.attack()
