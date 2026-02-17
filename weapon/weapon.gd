@@ -19,7 +19,9 @@ func attack() -> void:
 	if hit_area.has_overlapping_areas():
 		var areas := hit_area.get_overlapping_areas()
 		for area in areas:
-			if area.is_in_group("enemy_hitbox"):
-				print("Hit enemy!")
-				if area.get_parent() is Mob:
-					area.get_parent().take_damage(damage)
+			if area.is_in_group("hitbox"):
+				print("Hit!")
+				var node = area.get_parent()
+				if node is Mob or node is Player:
+					print(node)
+					node.take_damage(damage)

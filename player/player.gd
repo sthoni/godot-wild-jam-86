@@ -11,6 +11,7 @@ class_name Player extends CharacterBody2D
 @onready var weapon_aim_direction := Vector2.ZERO
 
 @onready var weapon : Node2D = $Weapon
+@onready var health := 10
 
 func _ready() -> void:
 	dash_cooldown_timer.one_shot = true
@@ -29,6 +30,13 @@ func _physics_process(delta: float) -> void:
 	var steering := desired_velocity - velocity
 	velocity += steering * ground_friction_factor * delta
 	move_and_slide()
+
+func take_damage(damage: int):
+	health -= damage
+	print("Mob took damage")
+	print("Health:", health)
+	if health <= 0:
+		queue_free()
 
 
 func _on_dash_cooldown_timeout() -> void:

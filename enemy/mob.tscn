@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://mk61jdnlqqck"]
+[gd_scene load_steps=7 format=3 uid="uid://mk61jdnlqqck"]
 
 [ext_resource type="Texture2D" uid="uid://wi664a6xgtk2" path="res://assets/sprites/mob.png" id="1_kgc2d"]
 [ext_resource type="Script" uid="uid://c4duto1hl4kx3" path="res://enemy/mob.gd" id="1_rwdny"]
+[ext_resource type="PackedScene" uid="uid://7wpq5yfc1i4j" path="res://weapon/weapon.tscn" id="2_bq0h1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ots1e"]
 animations = [{
@@ -28,6 +29,9 @@ script = ExtResource("1_rwdny")
 avoidance_strength = 100.0
 metadata/_edit_horizontal_guides_ = [-22.0]
 
+[node name="Weapon" parent="." instance=ExtResource("2_bq0h1")]
+unique_name_in_owner = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_ots1e")
@@ -36,7 +40,7 @@ sprite_frames = SubResource("SpriteFrames_ots1e")
 position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_kgc2d")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["enemy_hitbox"]]
+[node name="Hitbox" type="Area2D" parent="." groups=["hitbox"]]
 collision_layer = 32
 collision_mask = 0
 

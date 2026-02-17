@@ -24,7 +24,7 @@ window/stretch/scale_mode="integer"
 [global_group]
 
 players=""
-enemy_hitbox=""
+hitbox=""
 
 [input]
 

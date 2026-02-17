@@ -5,10 +5,12 @@ class_name Mob extends CharacterBody2D
 @export var avoidance_strength := 2000.0
 
 @onready var _raycasts: Node2D = %Raycasts
+@onready var weapon: Weapon = %Weapon
 
 func _physics_process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("players")
 	if player:
+		attack(player)
 		var direction = player.position - position
 		direction = direction.normalized()
 		velocity = direction * speed
@@ -41,3 +43,7 @@ func calculate_avoidance_force() -> Vector2:
 			avoidance_force += force
 
 	return avoidance_force
+
+func attack(player: Player) -> void:
+	if player:
+		weapon.rotation = player.position.direction_to(global_position).angle() + PI
